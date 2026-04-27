@@ -1,0 +1,87 @@
+<footer class="bg-dark pt-24 pb-12 relative overflow-hidden text-white">
+  <!-- Decorative Background Pattern -->
+  <div class="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
+  
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
+      <!-- Brand & Story -->
+      <div class="space-y-8" data-aos="fade-up">
+        <a href="/" class="flex items-center gap-3 group">
+          <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-primary font-black text-2xl shadow-lg relative overflow-hidden">
+            <span>G</span>
+          </div>
+          <div class="flex flex-col">
+            <h3 class="text-xl font-black tracking-tight leading-none">Geeta Traders</h3>
+            <span class="text-[10px] font-bold text-primary uppercase tracking-[2px] mt-1">Authorized Agency</span>
+          </div>
+        </a>
+        <p class="text-gray-400 font-medium leading-relaxed">
+          Bringing the authentic taste of Rajasthan to every doorstep. As authorized Bikaji distributors, we guarantee freshness, quality, and trust.
+        </p>
+        <div class="flex gap-4">
+          <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition-all group">
+            <i class="fab fa-facebook-f group-hover:scale-110"></i>
+          </a>
+          <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition-all group">
+            <i class="fab fa-instagram group-hover:scale-110"></i>
+          </a>
+          <a href="https://wa.me/<%= whatsappNumber %>" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#25D366] transition-all group">
+            <i class="fab fa-whatsapp group-hover:scale-110"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Exploration -->
+      <div class="space-y-8" data-aos="fade-up" data-aos-delay="100">
+        <h4 class="text-lg font-black tracking-tight border-l-4 border-primary pl-4 uppercase">Quick Navigation</h4>
+        <ul class="space-y-4 font-bold text-sm text-gray-400">
+          <li><a href="/" class="hover:text-primary transition-colors flex items-center gap-2 group"><i class="fas fa-chevron-right text-[10px] group-hover:translate-x-1 transition-transform"></i> Home</a></li>
+          <li><a href="/products" class="hover:text-primary transition-colors flex items-center gap-2 group"><i class="fas fa-chevron-right text-[10px] group-hover:translate-x-1 transition-transform"></i> Product Catalog</a></li>
+          <li><a href="/inquiry" class="hover:text-primary transition-colors flex items-center gap-2 group"><i class="fas fa-chevron-right text-[10px] group-hover:translate-x-1 transition-transform"></i> Bulk Order Inquiry</a></li>
+          <li><a href="/about" class="hover:text-primary transition-colors flex items-center gap-2 group"><i class="fas fa-chevron-right text-[10px] group-hover:translate-x-1 transition-transform"></i> About Our Legacy</a></li>
+          <li><a href="/contact" class="hover:text-primary transition-colors flex items-center gap-2 group"><i class="fas fa-chevron-right text-[10px] group-hover:translate-x-1 transition-transform"></i> Contact Support</a></li>
+        </ul>
+      </div>
+
+      <!-- Categories -->
+      <div class="space-y-8" data-aos="fade-up" data-aos-delay="200">
+        <h4 class="text-lg font-black tracking-tight border-l-4 border-primary pl-4 uppercase">Our Range</h4>
+        <ul class="space-y-4 font-bold text-sm text-gray-400">
+          <li><a href="/products?category=Namkeen" class="hover:text-primary transition-colors flex items-center gap-2 group"><i class="fas fa-chevron-right text-[10px] group-hover:translate-x-1 transition-transform"></i> Spicy Namkeens</a></li>
+          <li><a href="/products?category=Sweets" class="hover:text-primary transition-colors flex items-center gap-2 group"><i class="fas fa-chevron-right text-[10px] group-hover:translate-x-1 transition-transform"></i> Delicious Sweets</a></li>
+          <li><a href="/products?category=Snacks" class="hover:text-primary transition-colors flex items-center gap-2 group"><i class="fas fa-chevron-right text-[10px] group-hover:translate-x-1 transition-transform"></i> Crispy Snacks</a></li>
+          <li><a href="/products?category=Gift Packs" class="hover:text-primary transition-colors flex items-center gap-2 group"><i class="fas fa-chevron-right text-[10px] group-hover:translate-x-1 transition-transform"></i> Premium Gift Packs</a></li>
+          <li><a href="/products?category=Papad" class="hover:text-primary transition-colors flex items-center gap-2 group"><i class="fas fa-chevron-right text-[10px] group-hover:translate-x-1 transition-transform"></i> Authentic Papads</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="space-y-8" data-aos="fade-up" data-aos-delay="300">
+        <h4 class="text-lg font-black tracking-tight border-l-4 border-primary pl-4 uppercase">Reach Us</h4>
+        <ul class="space-y-6 font-medium text-gray-400">
+          <li class="flex gap-4">
+            <i class="fas fa-map-marker-alt text-primary text-xl mt-1"></i>
+            <span><%= businessAddress %></span>
+          </li>
+          <li class="flex gap-4">
+            <i class="fas fa-phone-alt text-primary text-xl mt-1"></i>
+            <a href="tel:<%= businessPhone.replace(/\s/g, '') %>" class="hover:text-white transition-colors"><%= businessPhone %></a>
+          </li>
+          <li class="flex gap-4">
+            <i class="fas fa-envelope text-primary text-xl mt-1"></i>
+            <a href="mailto:<%= businessEmail %>" class="hover:text-white transition-colors"><%= businessEmail %></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="pt-12 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6 text-gray-500 font-bold text-xs uppercase tracking-widest">
+      <p>&copy; <%= new Date().getFullYear() %> Geeta Traders. Crafting Freshness.</p>
+      <div class="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-full border border-white/5">
+        <span>Authorized Distributor of</span>
+        <strong class="text-white">Bikaji Foods International Ltd.</strong>
+      </div>
+    </div>
+  </div>
+</footer>

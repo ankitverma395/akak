@@ -1,0 +1,110 @@
+<% layout("layouts/adminBoilerplate") %>
+
+<!-- Stats Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+  <div class="bg-white p-8 rounded-premium shadow-sm border border-gray-100 flex items-center gap-6 group hover:shadow-xl transition-all">
+    <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center text-2xl group-hover:bg-blue-600 group-hover:text-white transition-all">
+      <i class="fas fa-box-open"></i>
+    </div>
+    <div>
+      <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">Total Products</p>
+      <h3 class="text-3xl font-black text-dark tracking-tighter"><%= totalProducts %></h3>
+    </div>
+  </div>
+  <div class="bg-white p-8 rounded-premium shadow-sm border border-gray-100 flex items-center gap-6 group hover:shadow-xl transition-all">
+    <div class="w-16 h-16 bg-green-50 text-green-600 rounded-2xl flex items-center justify-center text-2xl group-hover:bg-green-600 group-hover:text-white transition-all">
+      <i class="fas fa-envelope"></i>
+    </div>
+    <div>
+      <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">Total Inquiries</p>
+      <h3 class="text-3xl font-black text-dark tracking-tighter"><%= totalInquiries %></h3>
+    </div>
+  </div>
+  <div class="bg-white p-8 rounded-premium shadow-sm border border-gray-100 flex items-center gap-6 group hover:shadow-xl transition-all">
+    <div class="w-16 h-16 bg-orange-50 text-orange-600 rounded-2xl flex items-center justify-center text-2xl group-hover:bg-orange-600 group-hover:text-white transition-all">
+      <i class="fas fa-bell"></i>
+    </div>
+    <div>
+      <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">New Leads</p>
+      <h3 class="text-3xl font-black text-dark tracking-tighter"><%= newInquiries %></h3>
+    </div>
+  </div>
+  <div class="bg-white p-8 rounded-premium shadow-sm border border-gray-100 flex items-center gap-6 group hover:shadow-xl transition-all">
+    <div class="w-16 h-16 bg-purple-50 text-purple-600 rounded-2xl flex items-center justify-center text-2xl group-hover:bg-purple-600 group-hover:text-white transition-all">
+      <i class="fas fa-tags"></i>
+    </div>
+    <div>
+      <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">Categories</p>
+      <h3 class="text-3xl font-black text-dark tracking-tighter"><%= categories.length %></h3>
+    </div>
+  </div>
+</div>
+
+<div class="grid lg:grid-cols-3 gap-8">
+  <!-- Recent Inquiries -->
+  <div class="lg:col-span-2 bg-white rounded-premium border border-gray-100 shadow-sm overflow-hidden">
+    <div class="p-6 border-b border-gray-100 flex items-center justify-between">
+      <h3 class="text-xl font-black text-dark tracking-tight flex items-center gap-3">
+        <i class="fas fa-clock text-primary"></i> Recent Inquiries
+      </h3>
+      <a href="/admin/inquiries" class="text-xs font-bold text-primary hover:underline">View All</a>
+    </div>
+    <div class="overflow-x-auto">
+      <table class="w-full text-left">
+        <thead>
+          <tr class="bg-slate-50 text-[10px] font-black text-gray-400 uppercase tracking-widest">
+            <th class="px-6 py-4">Partner Name</th>
+            <th class="px-6 py-4">Product/Req</th>
+            <th class="px-6 py-4">Status</th>
+            <th class="px-6 py-4">Date</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          <% recentInquiries.forEach(inq => { %>
+            <tr class="hover:bg-slate-50/50 transition-colors">
+              <td class="px-6 py-5">
+                <div class="font-bold text-dark"><%= inq.name %></div>
+                <div class="text-[10px] text-gray-400 font-medium"><%= inq.phone %></div>
+              </td>
+              <td class="px-6 py-5 font-bold text-xs text-gray-600">
+                <%= inq.product ? inq.product.name : inq.productRequirement.substring(0,30) %>
+              </td>
+              <td class="px-6 py-5">
+                <span class="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider 
+                  <%= inq.status === 'new' ? 'bg-orange-100 text-orange-600' : 'bg-green-100 text-green-600' %>">
+                  <%= inq.status %>
+                </span>
+              </td>
+              <td class="px-6 py-5 text-xs font-bold text-gray-400">
+                <%= inq.createdAt.toLocaleDateString() %>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Top Products -->
+  <div class="bg-white rounded-premium border border-gray-100 shadow-sm overflow-hidden">
+    <div class="p-6 border-b border-gray-100">
+      <h3 class="text-xl font-black text-dark tracking-tight flex items-center gap-3">
+        <i class="fas fa-fire text-primary"></i> Popular Items
+      </h3>
+    </div>
+    <div class="p-6 space-y-6">
+      <% topProducts.forEach((p, i) => { %>
+        <div class="flex items-center gap-4 group cursor-pointer">
+          <div class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center font-black text-xs text-gray-400 group-hover:bg-primary group-hover:text-white transition-all">
+            #<%= i+1 %>
+          </div>
+          <img src="<%= p.image %>" class="w-12 h-12 rounded-xl object-contain bg-slate-50 border border-gray-100" />
+          <div class="flex-1">
+            <h4 class="font-bold text-dark text-sm truncate"><%= p.name %></h4>
+            <p class="text-[10px] text-primary font-black uppercase tracking-widest"><%= p.inquiryCount %> Lead Requests</p>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</div>

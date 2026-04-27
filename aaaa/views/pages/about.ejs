@@ -1,0 +1,127 @@
+<% layout("layouts/boilerplate") %>
+
+<!-- ═══════ PAGE HERO ═══════ -->
+<section class="relative pt-24 pb-12 bg-dark overflow-hidden">
+  <div class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+  <div class="max-w-7xl mx-auto px-6 relative z-10 text-center">
+    <div class="inline-flex items-center gap-2 bg-primary/20 text-primary px-4 py-2 rounded-full font-bold text-xs uppercase tracking-widest mb-6 border border-primary/30" data-aos="fade-down">
+      About Geeta Traders
+    </div>
+    <h1 class="text-5xl lg:text-7xl font-black text-white tracking-tight mb-6" data-aos="fade-up">
+      Legacy of <span class="text-primary italic">Authenticity</span>
+    </h1>
+    <div class="flex items-center justify-center gap-3 text-gray-400 font-bold text-sm" data-aos="fade-up" data-aos-delay="200">
+      <a href="/" class="hover:text-white transition-colors">Home</a>
+      <i class="fas fa-chevron-right text-[10px] opacity-50"></i>
+      <span class="text-primary">About Us</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ STORY SECTION ═══════ -->
+<section class="py-16 bg-white overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid lg:grid-cols-2 gap-20 items-center">
+      <div class="relative" data-aos="fade-right">
+        <div class="absolute -top-10 -left-10 w-40 h-40 bg-secondary/10 rounded-full blur-3xl"></div>
+        <div class="relative z-10 rounded-[40px] overflow-hidden shadow-2xl border-8 border-slate-50">
+          <img src="https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&q=80&w=1200" alt="Distribution Center" class="w-full h-full object-cover" />
+        </div>
+        <div class="absolute -bottom-10 -right-10 bg-primary p-8 rounded-premium text-white shadow-2xl" data-aos="zoom-in" data-aos-delay="400">
+          <div class="text-4xl font-black mb-1">15+</div>
+          <p class="text-xs font-bold uppercase tracking-widest opacity-80">Years in Business</p>
+        </div>
+      </div>
+      
+      <div data-aos="fade-left">
+        <span class="text-primary font-black uppercase tracking-[3px] text-sm mb-4 block">Our Journey</span>
+        <h2 class="text-4xl lg:text-5xl font-black text-dark tracking-tight mb-8">Built on Trust, <br />Driven by Quality</h2>
+        <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+          Established over 15 years ago, <strong class="text-dark">Geeta Traders</strong> has grown from a local supplier to one of the most trusted authorized agencies for <strong>Bikaji Foods International Ltd</strong>.
+        </p>
+        <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+          We believe that every pack of Bikaji carries a piece of Rajasthan's heritage. Our mission is to ensure that this heritage reaches every kitchen and every store with the same freshness and passion it was created with.
+        </p>
+        <div class="grid grid-cols-2 gap-6">
+          <div class="p-6 bg-slate-50 rounded-2xl border border-gray-100 hover:border-primary transition-colors group">
+             <i class="fas fa-bullseye text-2xl text-primary mb-4 group-hover:scale-110 transition-transform"></i>
+             <h4 class="font-black text-dark mb-2">Our Mission</h4>
+             <p class="text-xs text-gray-500 font-medium leading-relaxed">To become the gold standard in food distribution through efficiency and integrity.</p>
+          </div>
+          <div class="p-6 bg-slate-50 rounded-2xl border border-gray-100 hover:border-primary transition-colors group">
+             <i class="fas fa-eye text-2xl text-primary mb-4 group-hover:scale-110 transition-transform"></i>
+             <h4 class="font-black text-dark mb-2">Our Vision</h4>
+             <p class="text-xs text-gray-500 font-medium leading-relaxed">Scaling traditional flavors to modern markets across the entire region.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ VALUES SECTION ═══════ -->
+<section class="py-16 bg-slate-50">
+  <div class="max-w-7xl mx-auto px-6 text-center">
+    <div class="max-w-3xl mx-auto mb-20">
+      <h2 class="text-4xl lg:text-5xl font-black text-dark tracking-tight mb-6" data-aos="fade-up">The Core Values We Live By</h2>
+      <p class="text-gray-500 font-medium text-lg" data-aos="fade-up" data-aos-delay="100">Every decision we make is guided by our commitment to our partners and the Bikaji brand.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <% const values = [
+        { icon: 'handshake', title: 'Trusted Partnership', desc: 'Direct access to the authorized Bikaji supply chain.' },
+        { icon: 'boxes-stacked', title: 'Full Catalog', desc: 'Every product, every size, always available.' },
+        { icon: 'clock', title: 'On-Time Delivery', desc: 'Reliability that keeps your business running smoothly.' },
+        { icon: 'indian-rupee-sign', title: 'Market Rates', desc: 'The most competitive wholesale pricing in the region.' },
+        { icon: 'users', title: 'Expert Team', desc: 'Dedicated sales managers for every retail partner.' },
+        { icon: 'rotate', title: 'Easy Returns', desc: 'Simple replacement policies for total peace of mind.' }
+      ] %>
+      <% values.forEach((v, i) => { %>
+        <div class="bg-white p-10 rounded-premium shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-500" data-aos="fade-up" data-aos-delay="<%= i * 100 %>">
+          <div class="w-16 h-16 bg-primary/10 text-primary rounded-2xl flex items-center justify-center text-3xl mb-8 mx-auto">
+            <i class="fas fa-<%= v.icon %>"></i>
+          </div>
+          <h3 class="text-xl font-black text-dark mb-4"><%= v.title %></h3>
+          <p class="text-gray-500 font-medium leading-relaxed"><%= v.desc %></p>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ PARTNER WITH US ═══════ -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="bg-dark rounded-[40px] p-10 lg:p-20 relative overflow-hidden flex flex-col lg:flex-row items-center gap-12" data-aos="zoom-in">
+       <div class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/brushed-alum.png')]"></div>
+       <div class="flex-1 relative z-10 text-center lg:text-left">
+         <h2 class="text-4xl lg:text-6xl font-black text-white mb-6 tracking-tight">Become a Partner Today</h2>
+         <p class="text-xl text-gray-400 mb-8 max-w-xl font-medium">Join the largest network of retailers in the region. Let's grow together with Bikaji.</p>
+         <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+           <a href="/contact" class="px-10 py-5 bg-primary text-white rounded-2xl font-black text-lg hover:scale-105 transition-all">Visit Our Office</a>
+           <a href="/inquiry" class="px-10 py-5 bg-white/10 text-white rounded-2xl font-black text-lg border border-white/20 hover:bg-white hover:text-dark transition-all">Enquire Online</a>
+         </div>
+       </div>
+       <div class="flex-shrink-0 relative z-10 hidden lg:block">
+         <div class="w-80 h-80 bg-gradient-to-tr from-primary to-accent rounded-full p-4 animate-spin-slow">
+            <div class="w-full h-full bg-dark rounded-full flex items-center justify-center">
+               <div class="text-center">
+                 <div class="text-5xl font-black text-white mb-2 tracking-tighter">500+</div>
+                 <p class="text-xs font-bold text-gray-500 uppercase tracking-widest">Happy Partners</p>
+               </div>
+            </div>
+         </div>
+       </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  .animate-spin-slow {
+    animation: spin-slow 15s linear infinite;
+  }
+</style>

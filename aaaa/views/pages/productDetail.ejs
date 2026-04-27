@@ -1,0 +1,102 @@
+<% layout("layouts/boilerplate") %>
+
+<section class="page-hero page-hero-sm">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="/">Home</a> <i class="fas fa-chevron-right"></i>
+      <a href="/products">Products</a> <i class="fas fa-chevron-right"></i>
+      <span><%= product.name %></span>
+    </div>
+  </div>
+</section>
+
+<section class="section product-detail-section" id="productDetail">
+  <div class="container">
+    <div class="product-detail-grid">
+      <div class="product-detail-image">
+        <div class="detail-image-wrapper">
+          <img src="<%= product.image %>" alt="<%= product.name %>" class="detail-main-image" />
+          <div class="detail-badge"><%= product.category %></div>
+        </div>
+      </div>
+      <div class="product-detail-info">
+        <div class="detail-category-tag"><%= product.category %></div>
+        <h2 class="detail-title"><%= product.name %></h2>
+        <% if (product.description) { %>
+          <p class="detail-description"><%= product.description %></p>
+        <% } %>
+        <div class="detail-section">
+          <h4><i class="fas fa-box"></i> Available Pack Sizes</h4>
+          <div class="pack-sizes">
+            <% product.packSizes.forEach(size => { %>
+              <span class="pack-size-tag"><%= size %></span>
+            <% }) %>
+          </div>
+        </div>
+        <div class="detail-section pricing-note">
+          <div class="pricing-card">
+            <i class="fas fa-tag"></i>
+            <div>
+              <h4>Bulk Pricing Available</h4>
+              <p>Contact us for wholesale rates and special pricing.</p>
+            </div>
+          </div>
+        </div>
+        <div class="detail-actions">
+          <a href="/inquiry?product=<%= product._id %>" class="btn btn-primary btn-lg">
+            <i class="fas fa-paper-plane"></i> Send Inquiry
+          </a>
+          <a href="https://wa.me/<%= whatsappNumber %>?text=Hi%2C%20I%20want%20to%20inquire%20about%20<%= encodeURIComponent(product.name) %>" class="btn btn-whatsapp btn-lg" target="_blank">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+        </div>
+        <div class="detail-trust">
+          <span><i class="fas fa-check-circle"></i> 100% Authentic</span>
+          <span><i class="fas fa-truck"></i> Fast Delivery</span>
+          <span><i class="fas fa-shield-alt"></i> Quality Guaranteed</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-inquiry-form" id="productInquiryForm">
+      <h3><i class="fas fa-paper-plane"></i> Quick Inquiry for <%= product.name %></h3>
+      <form action="/inquiry" method="POST" class="inquiry-form-inline">
+        <input type="hidden" name="productId" value="<%= product._id %>" />
+        <input type="hidden" name="productRequirement" value="<%= product.name %>" />
+        <input type="hidden" name="inquiryType" value="product" />
+        <div class="form-row">
+          <div class="form-group"><input type="text" name="name" placeholder="Your Name *" required class="form-input" /></div>
+          <div class="form-group"><input type="tel" name="phone" placeholder="Phone Number *" required class="form-input" /></div>
+          <div class="form-group"><input type="text" name="quantity" placeholder="Quantity" class="form-input" /></div>
+          <div class="form-group"><button type="submit" class="btn btn-primary btn-lg"><i class="fas fa-paper-plane"></i> Submit</button></div>
+        </div>
+      </form>
+    </div>
+
+    <% if (relatedProducts && relatedProducts.length > 0) { %>
+      <div class="related-products">
+        <h3 class="section-title">Related Products</h3>
+        <div class="products-grid products-grid-sm">
+          <% relatedProducts.forEach(rp => { %>
+            <div class="product-card">
+              <a href="/products/<%= rp.slug %>" class="product-link">
+                <div class="product-image-wrapper">
+                  <img src="<%= rp.image %>" alt="<%= rp.name %>" loading="lazy" class="product-image" />
+                  <div class="product-badge"><%= rp.category %></div>
+                </div>
+                <div class="product-info">
+                  <h3 class="product-name"><%= rp.name %></h3>
+                  <p class="product-sizes"><i class="fas fa-box"></i> <%= rp.packSizes.join(" | ") %></p>
+                </div>
+              </a>
+              <div class="product-actions">
+                <a href="/products/<%= rp.slug %>" class="btn btn-outline btn-sm">View</a>
+                <a href="/inquiry?product=<%= rp._id %>" class="btn btn-primary btn-sm">Enquire</a>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+      </div>
+    <% } %>
+  </div>
+</section>

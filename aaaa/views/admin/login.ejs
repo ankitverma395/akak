@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login - Geeta Traders</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#D11218',
+            secondary: '#F4B400',
+            dark: '#121212',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Outfit', sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-50 min-h-screen flex items-center justify-center p-6 relative overflow-hidden">
+  <!-- Decorative Background -->
+  <div class="absolute inset-0 z-0 opacity-40">
+    <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/4"></div>
+    <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-secondary/10 rounded-full blur-[100px] translate-y-1/4 -translate-x-1/4"></div>
+  </div>
+
+  <div class="max-w-md w-full relative z-10">
+    <div class="bg-white rounded-[40px] shadow-2xl shadow-dark/5 border border-gray-100 overflow-hidden">
+      <div class="bg-dark p-10 text-white text-center relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-32 h-32 bg-primary/20 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2"></div>
+        <div class="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center text-white font-black text-3xl mx-auto mb-4 shadow-lg shadow-primary/30">G</div>
+        <h1 class="text-3xl font-black tracking-tight">Geeta Traders</h1>
+        <p class="text-xs font-bold text-gray-500 uppercase tracking-[3px] mt-2">Admin Dashboard Access</p>
+      </div>
+
+      <div class="p-10">
+        <% if (typeof error !== 'undefined' && error.length) { %>
+          <div class="mb-6 p-4 bg-red-50 border-l-4 border-red-500 text-red-700 font-bold flex items-center gap-3 rounded-r-xl text-sm">
+            <i class="fas fa-exclamation-circle"></i> <%= error %>
+          </div>
+        <% } %>
+
+        <form action="/admin/login" method="POST" class="space-y-6">
+          <div class="space-y-2">
+            <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Admin Username</label>
+            <div class="relative">
+              <i class="fas fa-user absolute left-5 top-1/2 -translate-y-1/2 text-gray-400"></i>
+              <input type="text" name="username" required placeholder="admin" class="w-full pl-12 pr-6 py-4 bg-slate-50 border border-gray-100 rounded-2xl focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all font-bold" />
+            </div>
+          </div>
+          
+          <div class="space-y-2">
+            <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Secure Password</label>
+            <div class="relative">
+              <i class="fas fa-lock absolute left-5 top-1/2 -translate-y-1/2 text-gray-400"></i>
+              <input type="password" name="password" required placeholder="••••••••" class="w-full pl-12 pr-6 py-4 bg-slate-50 border border-gray-100 rounded-2xl focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all font-bold" />
+            </div>
+          </div>
+
+          <button type="submit" class="w-full py-5 bg-primary text-white rounded-2xl font-black text-xl shadow-xl shadow-primary/20 hover:bg-dark transition-all flex items-center justify-center gap-3 group">
+            Login Now <i class="fas fa-sign-in-alt group-hover:translate-x-1 transition-transform"></i>
+          </button>
+        </form>
+
+        <div class="mt-10 text-center">
+          <a href="/" class="text-xs font-black text-gray-400 hover:text-primary transition-colors flex items-center justify-center gap-2">
+            <i class="fas fa-arrow-left"></i> Back to Official Website
+          </a>
+        </div>
+      </div>
+    </div>
+    <p class="text-center mt-8 text-[10px] font-bold text-gray-400 uppercase tracking-widest">&copy; <%= new Date().getFullYear() %> Geeta Traders Distribution</p>
+  </div>
+</body>
+</html>

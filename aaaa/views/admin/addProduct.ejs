@@ -1,0 +1,85 @@
+<% layout("layouts/adminBoilerplate") %>
+
+<div class="max-w-4xl">
+  <div class="bg-white rounded-premium shadow-2xl shadow-dark/5 border border-gray-100 overflow-hidden">
+    <div class="bg-dark p-6 text-white flex items-center justify-between">
+      <div>
+        <h2 class="text-2xl font-black tracking-tight">Add New Product</h2>
+        <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mt-1">Product Details & Inventory</p>
+      </div>
+      <i class="fas fa-box-open text-4xl opacity-20"></i>
+    </div>
+    
+    <div class="p-6">
+      <form action="/admin/products" method="POST" enctype="multipart/form-data" class="space-y-8">
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="space-y-2">
+            <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Product Name *</label>
+            <input type="text" name="name" required placeholder="e.g. Bikaji Asli Bikaneri Bhujia" class="w-full px-4 py-3 bg-slate-50 border border-gray-100 rounded-2xl focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all font-bold" />
+          </div>
+          <div class="space-y-2">
+            <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Category *</label>
+            <select name="category" required class="w-full px-4 py-3 bg-slate-50 border border-gray-100 rounded-2xl focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all font-bold appearance-none bg-[url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2224%22 height=%2224%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23D11218%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpolyline points=%226 9 12 15 18 9%22%3E%3C/polyline%3E%3C/svg%3E')] bg-no-repeat bg-[right_1.5rem_center] bg-[length:1rem]">
+              <option value="">Select Category</option>
+              <option value="Namkeen">Namkeen</option>
+              <option value="Sweets">Sweets</option>
+              <option value="Snacks">Snacks</option>
+              <option value="Gift Packs">Gift Packs</option>
+              <option value="Papad">Papad</option>
+              <option value="Beverages">Beverages</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Product Description</label>
+          <textarea name="description" rows="4" placeholder="Briefly describe the product's taste and quality..." class="w-full px-4 py-3 bg-slate-50 border border-gray-100 rounded-2xl focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all font-bold resize-none"></textarea>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="space-y-2">
+            <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Pack Sizes (comma separated) *</label>
+            <input type="text" name="packSizes" required placeholder="200g, 400g, 1kg" class="w-full px-4 py-3 bg-slate-50 border border-gray-100 rounded-2xl focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all font-bold" />
+          </div>
+          <div class="space-y-2">
+            <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Display Sort Order</label>
+            <input type="number" name="sortOrder" value="0" class="w-full px-4 py-3 bg-slate-50 border border-gray-100 rounded-2xl focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all font-bold" />
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Product Image</label>
+          <div class="relative group">
+             <input type="file" name="image" accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" />
+             <div class="w-full px-6 py-10 bg-slate-50 border-2 border-dashed border-gray-200 rounded-2xl flex flex-col items-center justify-center gap-4 group-hover:border-primary transition-colors">
+                <i class="fas fa-cloud-upload-alt text-4xl text-gray-300 group-hover:text-primary transition-colors"></i>
+                <div class="text-center">
+                   <p class="font-bold text-dark text-sm">Click to upload image</p>
+                   <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">PNG, JPG up to 5MB</p>
+                </div>
+             </div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-8 bg-slate-50 p-6 rounded-2xl border border-gray-100">
+           <label class="flex items-center gap-3 cursor-pointer group">
+              <input type="checkbox" name="featured" class="w-5 h-5 rounded border-gray-300 text-primary focus:ring-primary" />
+              <span class="font-bold text-dark text-sm group-hover:text-primary transition-colors">Featured Product</span>
+           </label>
+           <label class="flex items-center gap-3 cursor-pointer group">
+              <input type="checkbox" name="available" checked class="w-5 h-5 rounded border-gray-300 text-green-500 focus:ring-green-500" />
+              <span class="font-bold text-dark text-sm group-hover:text-green-600 transition-colors">Mark as Available</span>
+           </label>
+        </div>
+
+        <div class="flex gap-4 pt-6">
+          <button type="submit" class="flex-1 py-5 bg-primary text-white rounded-2xl font-black text-xl shadow-xl shadow-primary/20 hover:bg-dark transition-all flex items-center justify-center gap-3 group">
+            <i class="fas fa-plus group-hover:rotate-90 transition-transform"></i> Add Product
+          </button>
+          <a href="/admin/products" class="px-8 py-5 bg-slate-100 text-slate-500 rounded-2xl font-black text-xl hover:bg-slate-200 transition-all">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

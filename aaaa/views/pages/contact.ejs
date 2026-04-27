@@ -1,0 +1,128 @@
+<% layout("layouts/boilerplate") %>
+
+<!-- ═══════ PAGE HERO ═══════ -->
+<section class="relative pt-24 pb-12 bg-dark overflow-hidden">
+  <div class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/circuit-board.png')]"></div>
+  <div class="max-w-7xl mx-auto px-6 relative z-10 text-center">
+    <div class="inline-flex items-center gap-2 bg-secondary/20 text-secondary px-4 py-2 rounded-full font-bold text-xs uppercase tracking-widest mb-6 border border-secondary/30" data-aos="fade-down">
+      Get in Touch
+    </div>
+    <h1 class="text-5xl lg:text-7xl font-black text-white tracking-tight mb-6" data-aos="fade-up">
+      Let's <span class="text-primary italic">Connect</span>
+    </h1>
+    <div class="flex items-center justify-center gap-3 text-gray-400 font-bold text-sm" data-aos="fade-up" data-aos-delay="200">
+      <a href="/" class="hover:text-white transition-colors">Home</a>
+      <i class="fas fa-chevron-right text-[10px] opacity-50"></i>
+      <span class="text-primary">Contact</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ CONTACT GRID ═══════ -->
+<section class="py-16 bg-slate-50 relative overflow-hidden">
+  <!-- Decorative Elements -->
+  <div class="absolute top-1/4 -right-20 w-96 h-96 bg-primary/5 rounded-full blur-[120px]"></div>
+  <div class="absolute bottom-1/4 -left-20 w-80 h-80 bg-secondary/5 rounded-full blur-[100px]"></div>
+
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="grid lg:grid-cols-3 gap-12">
+      <!-- Contact Info Cards -->
+      <div class="lg:col-span-1 space-y-6">
+        <div class="bg-white p-8 rounded-premium shadow-sm border border-gray-100 hover:shadow-xl transition-all group" data-aos="fade-right">
+          <div class="w-12 h-12 bg-primary/10 text-primary rounded-xl flex items-center justify-center text-xl mb-6 group-hover:bg-primary group-hover:text-white transition-all">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <h3 class="text-xl font-black text-dark mb-3">Visit Our Office</h3>
+          <p class="text-gray-500 font-medium leading-relaxed"><%= businessAddress %></p>
+        </div>
+
+        <div class="bg-white p-8 rounded-premium shadow-sm border border-gray-100 hover:shadow-xl transition-all group" data-aos="fade-right" data-aos-delay="100">
+          <div class="w-12 h-12 bg-secondary/10 text-secondary-dark rounded-xl flex items-center justify-center text-xl mb-6 group-hover:bg-secondary group-hover:text-dark transition-all">
+            <i class="fas fa-phone-alt"></i>
+          </div>
+          <h3 class="text-xl font-black text-dark mb-3">Call Support</h3>
+          <p class="text-gray-500 font-medium leading-relaxed">
+            <a href="tel:<%= businessPhone.replace(/\s/g, '') %>" class="hover:text-primary transition-colors"><%= businessPhone %></a>
+          </p>
+        </div>
+
+        <div class="bg-white p-8 rounded-premium shadow-sm border border-gray-100 hover:shadow-xl transition-all group" data-aos="fade-right" data-aos-delay="200">
+          <div class="w-12 h-12 bg-accent/10 text-accent rounded-xl flex items-center justify-center text-xl mb-6 group-hover:bg-accent group-hover:text-white transition-all">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <h3 class="text-xl font-black text-dark mb-3">Email Us</h3>
+          <p class="text-gray-500 font-medium leading-relaxed">
+            <a href="mailto:<%= businessEmail %>" class="hover:text-primary transition-colors"><%= businessEmail %></a>
+          </p>
+        </div>
+
+        <div class="bg-[#25D366] p-8 rounded-premium shadow-lg shadow-[#25D366]/20 text-white hover:scale-105 transition-all group" data-aos="fade-right" data-aos-delay="300">
+          <div class="flex items-center gap-4 mb-6">
+            <i class="fab fa-whatsapp text-4xl"></i>
+            <div>
+              <h3 class="text-xl font-black">WhatsApp Chat</h3>
+              <p class="text-xs font-bold opacity-80 uppercase tracking-widest">Instant Reply</p>
+            </div>
+          </div>
+          <a href="https://wa.me/<%= whatsappNumber %>" class="inline-flex items-center gap-2 bg-white text-[#25D366] px-6 py-3 rounded-xl font-black text-sm uppercase tracking-wider">
+            Start Chatting <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="lg:col-span-2" data-aos="fade-left">
+        <div class="bg-white p-10 lg:p-16 rounded-[40px] shadow-2xl shadow-dark/5 border border-gray-100 relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+          
+          <h2 class="text-3xl lg:text-4xl font-black text-dark tracking-tight mb-8">Send Us a <span class="text-primary italic">Message</span></h2>
+          
+          <form action="/inquiry" method="POST" class="space-y-6">
+            <input type="hidden" name="inquiryType" value="general" />
+            
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="space-y-2">
+                <label class="text-xs font-black text-gray-400 uppercase tracking-widest ml-1">Full Name *</label>
+                <input type="text" name="name" required placeholder="John Doe" class="w-full px-6 py-4 bg-slate-50 border border-gray-100 rounded-2xl focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all font-bold" />
+              </div>
+              <div class="space-y-2">
+                <label class="text-xs font-black text-gray-400 uppercase tracking-widest ml-1">Phone Number *</label>
+                <input type="tel" name="phone" required placeholder="+91 XXXXX XXXXX" class="w-full px-6 py-4 bg-slate-50 border border-gray-100 rounded-2xl focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all font-bold" />
+              </div>
+            </div>
+            
+            <div class="space-y-2">
+              <label class="text-xs font-black text-gray-400 uppercase tracking-widest ml-1">Email Address</label>
+              <input type="email" name="email" placeholder="john@example.com" class="w-full px-6 py-4 bg-slate-50 border border-gray-100 rounded-2xl focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all font-bold" />
+            </div>
+            
+            <div class="space-y-2">
+              <label class="text-xs font-black text-gray-400 uppercase tracking-widest ml-1">Your Requirements / Message *</label>
+              <textarea name="productRequirement" required rows="4" placeholder="How can we help you? (e.g. want to stock 100 boxes of Bhujia)" class="w-full px-6 py-4 bg-slate-50 border border-gray-100 rounded-2xl focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all font-bold resize-none"></textarea>
+            </div>
+            
+            <button type="submit" class="w-full py-5 bg-dark text-white rounded-2xl font-black text-lg hover:bg-primary hover:shadow-2xl hover:shadow-primary/30 transition-all flex items-center justify-center gap-3 group">
+              Send Message <i class="fas fa-paper-plane group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ MAP SECTION ═══════ -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-black text-dark tracking-tight mb-4" data-aos="fade-up">Find Our Location</h2>
+      <p class="text-gray-500 font-medium" data-aos="fade-up" data-aos-delay="100">Visit us to discuss distribution and wholesale opportunities.</p>
+    </div>
+    <div class="rounded-[40px] overflow-hidden shadow-2xl border-8 border-slate-50" data-aos="zoom-in">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3557.7!2d73.31!3d28.01!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sBikaner%2C+Rajasthan!5e0!3m2!1sen!2sin!4v1"
+        width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</section>

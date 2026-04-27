@@ -1,0 +1,104 @@
+<% layout("layouts/adminBoilerplate") %>
+
+<div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+  <div class="flex items-center gap-4 overflow-x-auto pb-2 md:pb-0 no-scrollbar">
+    <a href="/admin/products" class="px-6 py-2 rounded-full font-bold text-xs uppercase tracking-widest transition-all 
+      <%= !selectedCategory ? 'bg-primary text-white shadow-lg shadow-primary/20' : 'bg-white text-gray-400 border border-gray-100 hover:border-primary hover:text-primary' %>">
+      All
+    </a>
+    <% categories.forEach(cat => { %>
+      <a href="/admin/products?category=<%= cat %>" class="px-6 py-2 rounded-full font-bold text-xs uppercase tracking-widest transition-all 
+        <%= selectedCategory === cat ? 'bg-primary text-white shadow-lg shadow-primary/20' : 'bg-white text-gray-400 border border-gray-100 hover:border-primary hover:text-primary' %>">
+        <%= cat %>
+      </a>
+    <% }) %>
+  </div>
+  <a href="/admin/products/new" class="px-6 py-3 bg-dark text-white rounded-xl font-bold text-sm hover:bg-primary transition-all flex items-center justify-center gap-2 shadow-lg">
+    <i class="fas fa-plus"></i> Add New Product
+  </a>
+</div>
+
+<div class="bg-white rounded-premium border border-gray-100 shadow-sm overflow-hidden">
+  <div class="overflow-x-auto">
+    <table class="w-full text-left border-collapse">
+      <thead>
+        <tr class="bg-slate-50 text-[10px] font-black text-gray-400 uppercase tracking-widest">
+          <th class="px-6 py-3">Image</th>
+          <th class="px-6 py-3">Product Details</th>
+          <th class="px-6 py-3">Category</th>
+          <th class="px-6 py-3">Pack Sizes</th>
+          <th class="px-6 py-3">Status</th>
+          <th class="px-6 py-3 text-right">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-100">
+        <% products.forEach(p => { %>
+          <tr class="hover:bg-slate-50/50 transition-colors group">
+            <td class="px-6 py-4">
+              <div class="w-16 h-16 rounded-2xl bg-slate-50 border border-gray-100 p-2 flex items-center justify-center group-hover:scale-105 transition-transform">
+                <img src="<%= p.image %>" alt="<%= p.name %>" class="max-h-full object-contain" />
+              </div>
+            </td>
+            <td class="px-6 py-4">
+              <div class="font-black text-dark text-lg leading-tight mb-1"><%= p.name %></div>
+              <div class="flex items-center gap-3">
+                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest flex items-center gap-1">
+                  <i class="fas fa-envelope text-primary"></i> <%= p.inquiryCount %> Inquiries
+                </span>
+                <% if (p.featured) { %>
+                  <span class="text-[10px] font-bold text-secondary-dark uppercase tracking-widest flex items-center gap-1">
+                    <i class="fas fa-star"></i> Featured
+                  </span>
+                <% } %>
+              </div>
+            </td>
+            <td class="px-6 py-4">
+              <span class="px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-[10px] font-black uppercase tracking-widest">
+                <%= p.category %>
+              </span>
+            </td>
+            <td class="px-6 py-4">
+              <div class="flex flex-wrap gap-1">
+                <% p.packSizes.forEach(size => { %>
+                  <span class="text-[10px] font-bold text-gray-400 bg-gray-50 px-2 py-1 rounded border border-gray-100"><%= size %></span>
+                <% }) %>
+              </div>
+            </td>
+            <td class="px-6 py-4">
+              <% if (p.available) { %>
+                <span class="flex items-center gap-1.5 text-green-600 font-bold text-xs">
+                   <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span> Available
+                </span>
+              <% } else { %>
+                <span class="flex items-center gap-1.5 text-red-400 font-bold text-xs">
+                   <span class="w-2 h-2 bg-red-400 rounded-full"></span> Out of Stock
+                </span>
+              <% } %>
+            </td>
+            <td class="px-6 py-4 text-right">
+              <div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                <a href="/admin/products/<%= p._id %>/edit" class="w-10 h-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all shadow-sm">
+                  <i class="fas fa-edit"></i>
+                </a>
+                <form action="/admin/products/<%= p._id %>?_method=DELETE" method="POST" class="inline" onsubmit="return confirm('Permanently delete this product?')">
+                  <button class="w-10 h-10 bg-red-50 text-red-600 rounded-xl flex items-center justify-center hover:bg-red-600 hover:text-white transition-all shadow-sm">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </form>
+              </div>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+  <% if (products.length === 0) { %>
+    <div class="p-20 text-center">
+      <div class="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center text-gray-300 text-3xl mx-auto mb-6">
+        <i class="fas fa-box-open"></i>
+      </div>
+      <h3 class="text-xl font-black text-dark mb-2">No Products Found</h3>
+      <p class="text-gray-400 font-medium">Try changing your filters or add a new product.</p>
+    </div>
+  <% } %>
+</div>

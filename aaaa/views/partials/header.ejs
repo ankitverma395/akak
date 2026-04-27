@@ -1,0 +1,74 @@
+<header class="sticky top-0 z-[1000] bg-white/80 backdrop-blur-md border-b border-gray-100 transition-all duration-300" id="mainHeader">
+  <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-3 group" id="headerLogo">
+      <div class="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center text-white font-black text-2xl shadow-lg shadow-primary/20 relative overflow-hidden group-hover:scale-105 transition-transform">
+        <span class="relative z-10 text-white">G</span>
+        <div class="absolute inset-0 bg-gradient-to-tr from-white/20 to-transparent"></div>
+      </div>
+      <div class="flex flex-col">
+        <h1 class="text-xl font-black text-dark tracking-tight leading-none group-hover:text-primary transition-colors">Geeta Traders</h1>
+        <span class="text-[10px] font-bold text-primary uppercase tracking-[2px] mt-1">Authorized Bikaji Agency</span>
+      </div>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="hidden md:flex items-center gap-10" id="mainNav">
+      <a href="/" class="text-[15px] font-bold text-gray-700 hover:text-primary transition-colors">Home</a>
+      <a href="/products" class="text-[15px] font-bold text-gray-700 hover:text-primary transition-colors">Products</a>
+      <a href="/inquiry" class="text-[15px] font-bold text-gray-700 hover:text-primary transition-colors">Bulk Order</a>
+      <a href="/about" class="text-[15px] font-bold text-gray-700 hover:text-primary transition-colors">About</a>
+      <a href="/contact" class="text-[15px] font-bold text-gray-700 hover:text-primary transition-colors">Contact</a>
+      <a href="/inquiry" class="ml-4 px-6 py-2.5 bg-primary text-white rounded-xl font-bold text-sm shadow-lg shadow-primary/20 hover:bg-dark hover:shadow-xl transition-all flex items-center gap-2">
+        <i class="fas fa-shopping-cart text-xs"></i> Enquire Now
+      </a>
+    </nav>
+
+    <!-- Mobile Menu Toggle -->
+    <button class="md:hidden flex flex-col gap-1.5 focus:outline-none" id="mobileMenuBtn">
+      <span class="w-7 h-0.5 bg-dark rounded-full transition-all duration-300" id="h-line-1"></span>
+      <span class="w-7 h-0.5 bg-dark rounded-full transition-all duration-300" id="h-line-2"></span>
+      <span class="w-7 h-0.5 bg-dark rounded-full transition-all duration-300" id="h-line-3"></span>
+    </button>
+  </div>
+
+  <!-- Mobile Navigation Overlay -->
+  <div class="fixed inset-0 bg-dark/95 backdrop-blur-xl z-[1001] translate-x-full transition-transform duration-500 md:hidden" id="mobileNavMenu">
+    <div class="flex flex-col items-center justify-center h-full gap-8 p-6 text-center">
+      <button class="absolute top-8 right-8 text-white text-4xl" id="closeMenuBtn">&times;</button>
+      <a href="/" class="text-3xl font-black text-white hover:text-primary transition-colors">Home</a>
+      <a href="/products" class="text-3xl font-black text-white hover:text-primary transition-colors">Products</a>
+      <a href="/inquiry" class="text-3xl font-black text-white hover:text-primary transition-colors">Bulk Order</a>
+      <a href="/about" class="text-3xl font-black text-white hover:text-primary transition-colors">About</a>
+      <a href="/contact" class="text-3xl font-black text-white hover:text-primary transition-colors">Contact</a>
+      <a href="/inquiry" class="mt-4 px-10 py-4 bg-primary text-white rounded-2xl font-black text-xl flex items-center gap-3">
+        <i class="fas fa-shopping-cart"></i> Enquire Now
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  // Mobile Menu Logic
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  const mobileNavMenu = document.getElementById('mobileNavMenu');
+  const closeMenuBtn = document.getElementById('closeMenuBtn');
+
+  mobileMenuBtn.addEventListener('click', () => {
+    mobileNavMenu.classList.remove('translate-x-full');
+  });
+
+  closeMenuBtn.addEventListener('click', () => {
+    mobileNavMenu.classList.add('translate-x-full');
+  });
+
+  // Simple scroll effect
+  window.addEventListener('scroll', () => {
+    const header = document.getElementById('mainHeader');
+    if (window.scrollY > 20) {
+      header.classList.add('py-2', 'shadow-xl');
+    } else {
+      header.classList.remove('py-2', 'shadow-xl');
+    }
+  });
+</script>

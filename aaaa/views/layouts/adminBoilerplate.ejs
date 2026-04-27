@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= typeof title !== 'undefined' ? title : 'Admin Panel - Geeta Traders' %></title>
+  <% 
+    // Defaults to prevent ReferenceErrors
+    if (typeof activePage === 'undefined') { var activePage = 'dashboard'; }
+    if (typeof pageTitle === 'undefined') { var pageTitle = 'Admin Panel'; }
+  %>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#D11218',
+            secondary: '#F4B400',
+            dark: '#121212',
+            adminbg: '#F8FAFC',
+          },
+          borderRadius: {
+            'premium': '20px',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Outfit', sans-serif; }
+    .sidebar-link.active { background: #D11218; color: white; box-shadow: 0 10px 15px -3px rgba(209, 18, 24, 0.2); }
+  </style>
+</head>
+<body class="bg-adminbg text-slate-800">
+  <div class="flex min-h-screen">
+    <!-- Sidebar -->
+    <aside class="w-72 bg-dark text-white fixed h-full z-50 transition-transform -translate-x-full lg:translate-x-0 overflow-y-auto" id="adminSidebar">
+      <div class="p-8 border-b border-white/10 flex items-center gap-4">
+        <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white font-black text-xl">G</div>
+        <div>
+          <h3 class="font-black tracking-tight text-lg leading-none">Geeta Traders</h3>
+          <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mt-1">Admin Control</span>
+        </div>
+      </div>
+      <nav class="p-6 space-y-2">
+        <a href="/admin/dashboard" class="sidebar-link <%= activePage === 'dashboard' ? 'active' : '' %> flex items-center gap-4 px-6 py-3 rounded-2xl font-bold transition-all hover:text-white group">
+          <i class="fas fa-chart-line group-hover:scale-110 transition-transform"></i> Dashboard
+        </a>
+        <a href="/admin/products" class="sidebar-link <%= activePage === 'products' ? 'active' : '' %> flex items-center gap-4 px-6 py-3 rounded-2xl font-bold text-gray-400 hover:text-white hover:bg-white/5 transition-all group">
+          <i class="fas fa-box-open group-hover:scale-110 transition-transform"></i> Products
+        </a>
+        <a href="/admin/products/new" class="sidebar-link <%= activePage === 'add-product' ? 'active' : '' %> flex items-center gap-4 px-6 py-3 rounded-2xl font-bold text-gray-400 hover:text-white hover:bg-white/5 transition-all group">
+          <i class="fas fa-plus-circle group-hover:scale-110 transition-transform"></i> Add Product
+        </a>
+        <a href="/admin/inquiries" class="sidebar-link <%= activePage === 'inquiries' ? 'active' : '' %> flex items-center gap-4 px-6 py-3 rounded-2xl font-bold text-gray-400 hover:text-white hover:bg-white/5 transition-all group">
+          <i class="fas fa-envelope group-hover:scale-110 transition-transform"></i> Inquiries
+        </a>
+        <div class="pt-8 pb-4">
+          <span class="text-[10px] font-black text-gray-600 uppercase tracking-[2px] ml-6">External</span>
+        </div>
+        <a href="/" target="_blank" class="flex items-center gap-4 px-6 py-3 rounded-2xl font-bold text-gray-400 hover:text-white hover:bg-white/5 transition-all group">
+          <i class="fas fa-globe group-hover:scale-110 transition-transform"></i> View Website
+        </a>
+        <a href="/admin/logout" class="flex items-center gap-4 px-6 py-3 rounded-2xl font-bold text-red-400 hover:bg-red-500/10 transition-all mt-10">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 lg:ml-72 min-h-screen">
+      <!-- Header -->
+      <header class="bg-white border-b border-gray-100 px-8 py-4 flex items-center justify-between sticky top-0 z-40">
+        <div class="flex items-center gap-4">
+          <button class="lg:hidden text-dark text-2xl" id="sidebarToggle"><i class="fas fa-bars"></i></button>
+          <h2 class="text-2xl font-black text-dark tracking-tight"><%= pageTitle %></h2>
+        </div>
+        <div class="flex items-center gap-6">
+          <div class="hidden md:flex flex-col text-right">
+             <span class="font-black text-xs text-dark tracking-tight">Admin Dashboard</span>
+             <span class="text-[10px] text-primary font-bold uppercase tracking-widest">Geeta Traders</span>
+          </div>
+          <div class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-dark border border-gray-200 shadow-sm"><i class="fas fa-user-shield"></i></div>
+        </div>
+      </header>
+
+      <div class="p-6">
+        <% if (typeof success !== 'undefined' && success.length) { %>
+          <div class="mb-8 p-4 bg-green-50 border-l-4 border-green-500 text-green-700 font-bold flex items-center gap-3 rounded-r-xl shadow-sm">
+            <i class="fas fa-check-circle"></i> <%= success %>
+          </div>
+        <% } %>
+        <% if (typeof error !== 'undefined' && error.length) { %>
+          <div class="mb-8 p-4 bg-red-50 border-l-4 border-red-500 text-red-700 font-bold flex items-center gap-3 rounded-r-xl shadow-sm">
+            <i class="fas fa-exclamation-circle"></i> <%= error %>
+          </div>
+        <% } %>
+
+        <%- body %>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const sidebar = document.getElementById('adminSidebar');
+    const toggle = document.getElementById('sidebarToggle');
+    toggle?.addEventListener('click', () => {
+      sidebar.classList.toggle('-translate-x-full');
+    });
+  </script>
+</body>
+</html>

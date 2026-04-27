@@ -1,0 +1,9 @@
+<% layout("layouts/boilerplate") %>
+<section class="section error-section">
+  <div class="container" style="text-align:center; padding: 80px 20px;">
+    <h2 style="font-size: 4rem; color: var(--primary); margin-bottom: 0;"><%= statusCode %></h2>
+    <h3 style="margin-bottom: 16px;">Something Went Wrong</h3>
+    <p style="margin-bottom: 32px; color: var(--text-muted);"><%= message %></p>
+    <a href="/" class="btn btn-primary btn-lg"><i class="fas fa-home"></i> Go Home</a>
+  </div>
+</section>
